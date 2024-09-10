@@ -1,3 +1,6 @@
+
+
+
 import { useState } from "react";
 import './index.css'
 import "./App.css";
@@ -47,11 +50,13 @@ function App() {
             Transaction.map((data,index) => {
               return (
                 <div className="userData">
-                  <span></span>
                   <h3>{index+1}{")"} {data.Amount}</h3>
-                  <h3>{data.Type}</h3>
+                  <h3 className={`${data.Type === "Income" ? "green" : "red"}`}
+                  // style={{
+                  //   color: data.Type ==="Income" ? "green": "red"
+                  // }}
+                  >{data.Type}</h3>
                 </div>
-                
               )
             })
             }
