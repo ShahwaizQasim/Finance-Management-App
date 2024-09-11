@@ -76,3 +76,25 @@ h3{
 .red{
   color: red !important;
 }
+
+.parent{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-block: 10px;
+}
+.child{
+  height: 100px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.child>h3{
+  font-family: 'Montserrat';
+  font-weight: 500;
+  color: #ccc;
+}

@@ -1,8 +1,5 @@
-
-
-
 import { useState } from "react";
-import './index.css'
+import "./index.css";
 import "./App.css";
 
 function App() {
@@ -12,7 +9,7 @@ function App() {
 
   //   console.log("Amount=>", Amount);
   //   console.log("Type=>", Type);
-  const [Amount, setAmount] = useState(0);
+  const [Amount, setAmount] = useState("Add Amount");
   const [Type, setType] = useState("Income");
   const [Transaction, setTransaction] = useState([]);
 
@@ -25,45 +22,76 @@ function App() {
   };
   console.log("Transaction", Transaction);
 
+  // const totalIncome = Transaction.reduce((acc, trans ) => {
+  //       return trans.Type === 'Income' ? acc + Number(trans.Amount) : acc,0
+  // })
+
+  const totalIncome = Transaction.reduce(
+    (acc, trans) =>
+      trans.type === "Income" ? acc + Number(trans.Amount) : acc,
+    0
+  );
+
+  console.log("totalIncome", totalIncome);
+
   return (
     <>
       <div className="container">
+        <h2>Finance Manangement</h2>
 
-          <h2>Finance Manangement</h2>
-          <input
-            type="number"
-            value={Amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Add Amount"
-            className="myInput"
-          />
-          <select
-            className="myInput"
-            value={Type}
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option value="Income">Income</option>
-            <option value="Expensive">Expensive</option>
-          </select>
-          <div>
-            {
-            Transaction.map((data,index) => {
-              return (
-                <div className="userData">
-                  <h3>{index+1}{")"} {data.Amount}</h3>
-                  <h3 className={`${data.Type === "Income" ? "green" : "red"}`}
+        <div className="parent">
+          <div className="child">
+            <h3>Total Income</h3>
+            <h3>1000</h3>
+          </div>
+          <div className="child">
+            <h3>Total Expense</h3>
+            <h3>10000</h3>
+          </div>
+          <div className="child">
+            <h3>Total Balance</h3>
+            <h3>10000</h3>
+          </div>
+        </div>
+
+        <input
+          type="number"
+          value={Amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Add Amount"
+          className="myInput"
+        />
+        <select
+          className="myInput"
+          value={Type}
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="Income">Income</option>
+          <option value="Expensive">Expensive</option>
+        </select>
+        <div>
+          {Transaction.map((data, index) => {
+            return (
+              <div className="userData">
+                <h3>
+                  {index + 1}
+                  {")"} {data.Amount}
+                </h3>
+                <h3
+                  className={`${data.Type === "Income" ? "green" : "red"}`}
                   // style={{
                   //   color: data.Type ==="Income" ? "green": "red"
                   // }}
-                  >{data.Type}</h3>
-                </div>
-              )
-            })
-            }
-          </div>
-          <button  onClick={handleOnButton} className="btn1">
-            Submit
-          </button>
+                >
+                  {data.Type}
+                </h3>
+              </div>
+            );
+          })}
+        </div>
+        <button onClick={handleOnButton} className="btn1">
+          Submit
+        </button>
       </div>
     </>
   );
