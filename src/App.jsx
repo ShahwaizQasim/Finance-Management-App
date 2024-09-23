@@ -60,11 +60,13 @@ function App() {
           onChange={(e) => setAmount(e.target.value)}
           placeholder="Add Amount"
           className="myInput"
+          required
         />
         <select
           className="myInput"
           value={Type}
           onChange={(e) => setType(e.target.value)}
+          required
         >
           <option value="Income">Income</option>
           <option value="Expensive">Expensive</option>
@@ -89,7 +91,7 @@ function App() {
             );
           })}
         </div>
-        <button onClick={handleOnButton} className="btn1">
+        <button onClick={handleOnButton} disabled={Amount === ''} className="btn1">
           Submit
         </button>
       </div>
